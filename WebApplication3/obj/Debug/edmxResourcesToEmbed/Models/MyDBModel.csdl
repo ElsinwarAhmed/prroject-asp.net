@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="coursesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="course_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="student" Relationship="Self.FK_student_course" FromRole="course" ToRole="student" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="student_id" />
+    </Key>
+    <Property Name="student_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="student_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="student_age" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="course_id" Type="Int32" />
+    <NavigationProperty Name="course" Relationship="Self.FK_student_course" FromRole="student" ToRole="course" />
+  </EntityType>
+  <Association Name="FK_student_course">
+    <End Role="course" Type="Self.course" Multiplicity="0..1" />
+    <End Role="student" Type="Self.student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="student">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="coursesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="course" EntityType="Self.course" />
+    <EntitySet Name="student" EntityType="Self.student" />
+    <AssociationSet Name="FK_student_course" Association="Self.FK_student_course">
+      <End Role="course" EntitySet="course" />
+      <End Role="student" EntitySet="student" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
