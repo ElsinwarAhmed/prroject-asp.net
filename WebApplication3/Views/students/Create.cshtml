@@ -3,17 +3,28 @@
 @{
     ViewBag.Title = "Create";
 }
+<div class="heading-bg col-md-12">
+    <div class="container">
+        <div class="pull-left">
+            <h5 class="" style="color: #878787; font-size: 22px;">Add New Student</h5>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-info back-home">
+                @Html.ActionLink("Home Page", "Index", "Home")  
+            </button>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+    </div>
 
-<h2>Create</h2>
+</div>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>student</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.student_name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,14 +52,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Add" class="btn btn-warning" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-info back-list">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
 </div>
 
 @section Scripts {

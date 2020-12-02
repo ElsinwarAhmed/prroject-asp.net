@@ -4,11 +4,22 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="heading-bg col-md-12" style="padding:0">
+    <div class="container" style="padding:0">
+        <div class="pull-left">
+            <h5 class="" style="color: #878787; font-size: 22px;">Details course</h5>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-info back-home">
+                @Html.ActionLink("Home Page", "Index", "Home")
+            </button>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+</div>
 
 <div>
-    <h4>course</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.course_name)
@@ -21,6 +32,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.course_id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-success edits">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.course_id })
+        </button>
+        <button class="btn btn-info back-list">
+            @Html.ActionLink("Back to List", "Index")
+        </button>
 </p>

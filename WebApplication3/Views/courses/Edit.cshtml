@@ -4,16 +4,26 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
+<div class="heading-bg col-md-12" style="padding:0">
+    <div class="container" style="padding:0">
+        <div class="pull-left">
+            <h5 class="" style="color: #878787; font-size: 22px;">Edit Course</h5>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-info back-home">
+                @Html.ActionLink("Home Page", "Index", "Home")
+            </button>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+</div>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>course</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.course_id)
 
@@ -27,14 +37,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-info back-list">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
 </div>
 
 @section Scripts {

@@ -4,42 +4,60 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="heading-bg col-md-12" style="padding:0">
+    <div class="container" style="padding:0">
+        <div class="pull-left">
+            <h5 class="" style="color: #878787; font-size: 22px;">All Students</h5>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-info back-home">
+                @Html.ActionLink("Home Page", "Index", "Home")
+            </button>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+    </div>
+</div>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button class="btn btn-warning add">
+        @Html.ActionLink("Add New Student", "Create")
+    </button>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.student_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.student_age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.course.course_name)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.student_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.student_age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.course.course_name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.student_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.student_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.student_id })
-        </td>
-    </tr>
-}
 
-</table>
+
+                        <table id="myTable" class="table table-striped">
+                            <thead>
+                                <th>#</th>
+                                <th>@Html.DisplayNameFor(model => model.student_name)</th>
+                                <th>@Html.DisplayNameFor(model => model.student_age)</th>
+                                <th> @Html.DisplayNameFor(model => model.course.course_name)</th>
+                                <th></th>
+                            </thead>
+                                <tbody>
+                                    <tr class="trow">
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.student_id)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.student_name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.student_age)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.course.course_name)
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { id = item.student_id })" class="btn btn-success">Edit</a>
+                                                <a href="@Url.Action("Details", new { id = item.student_id })" class="btn btn-info">Details</a>
+                                                <a href="@Url.Action("Delete", new { id = item.student_id })" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                        </table>
